@@ -1,5 +1,12 @@
 import os
-os.system("cd /Users/BrandonFung")
+# os.system("cd /Users/chengpeng123/Dropbox/Resume And Cover Letter")
+source_dir = "/Users/chengpeng123/Documents/coverletterautomate"
+target_dir =  "/Users/chengpeng123/Dropbox/Resume\ and\ Cover\ letter/OlderCover"
+
+cover_letter = "rawLetter.tex"
+cv = "cv_4.tex"
+os.system("cd " + source_dir)
+
 listofJobs = [["3D Visualization Engineering-Tools Developer","2G Robotics Inc"],
 ["NET Engineering","2pointb"],
 ["Data Scientist","AdRoll"],
@@ -47,10 +54,16 @@ listofJobs = [["3D Visualization Engineering-Tools Developer","2G Robotics Inc"]
 ["Software Engineering","ZenPayroll Inc"],
 ["Data Scientist and Developer","dataESP"],
 ["Analytics and Big Data Developer","nModal Solutions Inc."]]
-os.system("cd /Users/BrandonFung/Desktop/thingsof")
+
 for j in listofJobs:
-	with open(j[0].replace(" ","")+j[1].replace(" ","")+'.tex', "wt") as fout:
-		with open("rawLetter.tex", "rt") as fin:
+	file_src = j[0].replace(" ","")+j[1].replace(" ","")
+	file1pdf = j[0].replace(" ","")+j[1].replace(" ","")+'1.pdf'
+	file2pdf = j[0].replace(" ","")+j[1].replace(" ","")+'2.pdf'
+	file1tex = j[0].replace(" ","")+j[1].replace(" ","")+'1.tex'
+	file2tex = j[0].replace(" ","")+j[1].replace(" ","")+'2.tex'
+	# First cover letter
+	with open(file1tex, "wt") as fout:
+		with open(cover_letter, "rt") as fin:
 			for line in fin:
 				if ("COMPANY" in line):
 					fout.write(line.replace("COMPANY", j[1]))
@@ -58,5 +71,16 @@ for j in listofJobs:
 					fout.write(line.replace("POSITION", j[0]))
 				else:
 					fout.write(line)
-	os.system("cd /Users/BrandonFung/Desktop/thingsof/ohyeah")
-	os.system('pdflatex /Users/BrandonFung/Desktop/thingsof/'+j[0].replace(" ","")+j[1].replace(" ","")+'.tex')
+	os.system('pdflatex ' + file1tex)
+	# Second Resume
+	with open(file2tex, "wt") as fout:
+		with open(cv, "rt") as fin:
+			for line in fin:
+				fout.write(line)
+	os.system('pdflatex ' + file2tex)
+
+	# Combine
+	os.system("pdfjam " + file1pdf + " " + file2pdf + ' --outfile ' +  file_src + ".pdf")
+	os.system("rm " + file_src + "1.*")
+	os.system("rm " + file_src + "2.*")
+

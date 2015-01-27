@@ -1,14 +1,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Long Lined Cover Letter
+% Plain Cover Letter
 % LaTeX Template
-% Version 1.0 (1/6/13)
+% Version 1.0 (28/5/13)
 %
 % This template has been downloaded from:
 % http://www.LaTeXTemplates.com
 %
 % Original author:
-% Matthew J. Miller
-% http://www.matthewjmiller.net/howtos/customized-cover-letter-scripts/
+% Rensselaer Polytechnic Institute 
+% http://www.rpi.edu/dept/arc/training/latex/resumes/
 %
 % License:
 % CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
@@ -19,69 +19,80 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[10pt,stdletter,dateno,sigleft]{newlfm} % Extra options: 'sigleft' for a left-aligned signature, 'stdletternofrom' to remove the from address, 'letterpaper' for US letter paper - consult the newlfm class manual for more options
+\documentclass[11pt]{letter} % Default font size of the document, change to 10pt to fit more text
+\usepackage{graphicx}
+\usepackage{newcent} % Default font is the New Century Schoolbook PostScript font 
+%\usepackage{helvet} % Uncomment this (while commenting the above line) to use the Helvetica font
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+% Margins
+\topmargin=-1in % Moves the top of the document 1 inch above the default
+\textheight=8.5in % Total height of the text on the page before text goes on to the next page, this can be increased in a longer letter
+\oddsidemargin=-10pt % Position of the left margin, can be negative or positive if you want more or less room
+\textwidth=6.5in % Total width of the text, increase this if the left margin was decreased and vice-versa
 
-\usepackage{charter} % Use the Charter font for the document text
-
-
-
-\newlfmP{sigsize=50pt} % Slightly decrease the height of the signature field
-\newlfmP{addrfromphone} % Print a phone number under the sender's address
-\newlfmP{addrfromemail} % Print an email address under the sender's address
-\PhrPhone{Phone} % Customize the "Telephone" text
-\PhrEmail{Email} % Customize the "E-mail" text
-
-
-
-%----------------------------------------------------------------------------------------
-%	YOUR NAME AND CONTACT INFORMATION
-%----------------------------------------------------------------------------------------
-
-\namefrom{Brandon Fung} % Name
-
-\addrfrom{
-\today\\[12pt] % Date
-55 Milos Rd \\ % Address
-Richmond Hill, Ontario L4E 0S9
-}
-
-\phonefrom{(226) 989-3038} % Phone number
-
-\emailfrom{b6fung@uwaterloo.ca} % Email address
-
-%----------------------------------------------------------------------------------------
-%	ADDRESSEE AND GREETING/CLOSING
-%----------------------------------------------------------------------------------------
-
-\greetto{Dear Sir or Madam} % Greeting text
-\closeline{Sincerely yours,} % Closing text
-
-\nameto{} % Addressee of the letter above the to address
-
-\addrto{
-COMPANY\\
-}
-
-%----------------------------------------------------------------------------------------
+\let\raggedleft\raggedright % Pushes the date (at the top) to the left, comment this line to have the date on the right
 
 \begin{document}
-\begin{newlfm}
+
+% Variables to replace
+\newcommand{\Position}{Software Developer}
+\newcommand{\Company}{Complete Solar Solution}
+\newcommand{\Address}{1065 East Hillsdale Blvd. Suite 308}
+\newcommand{\Location}{Foster City, CA 94404}
+%\newcommand{\Department}{Brilliant}
+
 
 %----------------------------------------------------------------------------------------
-%	LETTER CONTENT
+%	ADDRESSEE SECTION
 %----------------------------------------------------------------------------------------
 
-I am writing this cover letter to apply for an 8 month internship at COMPANY for the position of 
-POSITION, for the term starting from May 2015 to December 2015.  Enclosed is my resume and other 
-items that have been provided by the University of Waterloo.
+\begin{letter}{ 
+%\Department \\
+COMPANY \\
+%\Address \\
+%\Location \\
+} 
 
-The position POSITION would be suited for me because of my previous experience at other technology companies and small brief side projects that were completed on the side. One such example was the time at Palantir Technologies in which I was given the title of Product Quality Engineer.  My responsibilities were to test different cases of the product and also to write testing automation for the product.  This automation was written in java and was using a selenium framework to do the front end testing of the product.  I was also responsible for the end to end testing by writing on top of current automation to suit it to what was needed.
+%----------------------------------------------------------------------------------------
+%	YOUR NAME & ADDRESS SECTION
+%----------------------------------------------------------------------------------------
 
-Another example would be a mini project that was completed at the Calhacks hackathon in which me and another student from Waterloo created a way to visualize data and manipulate it using the Leap Motion and displaying the data on Unity.  The code was written in C\# and was awarded the Meraki Presence Analytics Award.
+\begin{center}
+\large\bf Cheng Wanli Peng\\ % Your name
+%\vspace{20pt} \hrule height 1pt % If you would like a horizontal line separating the name from the address, uncomment the line to the left of this text
+81 Columbia Street West\\ Waterloo, Ontario N2L3K7\\ (289) 489-3743 % Your address and phone number
+\end{center} 
+\vfill
 
-I hope that you could give me a chance to interview for the position and I wish to thank you for considering me for POSITION.
+\signature{Cheng Wanli Peng} % Your name for the signature at the bottom
+
+%----------------------------------------------------------------------------------------
+%	LETTER CONTENT SECTION
+%----------------------------------------------------------------------------------------
+
+\opening{Dear Sir or Madam,} 
+
+I am delighted to present the attached resume as my application for the POSITION position with COMPANY in response to the position posted on Jobmine.
+
+Currently, I am a candidate for the Honours Bachelor of Computer Science Co-op Program at the University of Waterloo. Throughout my studies, internships and enthusiasm, I gained valuable experiences that I believe would transfer well to this position.
+
+While at American International Group, I had the opportunity to design prototypes that assited internal developers and increased productivity for catastrophe risk management. This exposure taught me how to analyze complicated APIs, extract key functionalities, and refactor code with design patterns. At Bluecoat Systems, I managed a full-stack web environment with little supervision, creating an internal tool that aided product managers in writing reports and presenting the progress for each sprint. In my last work term at BlackBerry, I was solely responsible for writing, automating and managing an entire test suite. 
+
+During my studies, I became familiar with analyzing complicated problems and finding effective solutions. Some valuable strengths I realized during include: a well-rounded Computer Science base, persistence in problem solving, and strong desire for product completion.
+
+Outside of school, I regularly develop and contribute to various personal projects that broadens my software knowledge. As a frequent participant in hackathons, I love creating and developing meaningful applications that solves a problem or increases productivity. My most notable project, Twilio Plays 2048, was even featured online on TechCrunch and the Twilio Official Blog.
+
+The posted position seems like an excellent prospect to use and develop my skills as a POSITION. Thank-you for considering my application. I look forward to provide more detailed information in an interview with COMPANY.
+
+Sincerely yours,
+
+\includegraphics{signature}
+
+Cheng Wanli Peng 
+%\encl{Curriculum vitae, Unofficial transcript} % List your enclosed documents here, comment this out to get rid of the "encl:"
 
 %----------------------------------------------------------------------------------------
 
-\end{newlfm}
+\end{letter}
+
 \end{document}

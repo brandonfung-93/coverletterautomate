@@ -55,12 +55,12 @@ listofJobs = [["3D Visualization Engineering-Tools Developer","2G Robotics Inc"]
 ["Data Scientist and Developer","dataESP"],
 ["Analytics and Big Data Developer","nModal Solutions Inc."]]
 
+# Compiles the Resume first
+os.system('pdflatex ' + cv)
 for j in listofJobs:
 	file_src = j[0].replace(" ","")+j[1].replace(" ","")
 	file1pdf = j[0].replace(" ","")+j[1].replace(" ","")+'1.pdf'
-	file2pdf = j[0].replace(" ","")+j[1].replace(" ","")+'2.pdf'
 	file1tex = j[0].replace(" ","")+j[1].replace(" ","")+'1.tex'
-	file2tex = j[0].replace(" ","")+j[1].replace(" ","")+'2.tex'
 	# First cover letter
 	with open(file1tex, "wt") as fout:
 		with open(cover_letter, "rt") as fin:
@@ -72,15 +72,8 @@ for j in listofJobs:
 				else:
 					fout.write(line)
 	os.system('pdflatex ' + file1tex)
-	# Second Resume
-	with open(file2tex, "wt") as fout:
-		with open(cv, "rt") as fin:
-			for line in fin:
-				fout.write(line)
-	os.system('pdflatex ' + file2tex)
-
 	# Combine
-	os.system("pdfjam " + file1pdf + " " + file2pdf + ' --outfile ' +  file_src + ".pdf")
+	os.system("pdfjam " + file1pdf + " " + "cv_4.pdf" + ' --outfile ' +  file_src + ".pdf")
 	os.system("rm " + file_src + "1.*")
 	os.system("rm " + file_src + "2.*")
 

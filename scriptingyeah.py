@@ -7,53 +7,29 @@ cover_letter = "rawLetter.tex"
 cv = "cv_4.tex"
 os.system("cd " + source_dir)
 
-listofJobs = [["3D Visualization Engineering-Tools Developer","2G Robotics Inc"],
-["NET Engineering","2pointb"],
-["Data Scientist","AdRoll"],
-["Python Engineering","AdRoll"],
-["Front-end Engineering","AdRoll"],
-["Software Engineering","Air Computing Inc"],
-["Video Processing","Apple Inc"],
-["Engineering Intern","Atomic Labs"], 
-["Software Engineering Intern","BandPage"],
-["Software Developer","Bazaarvoice"],
-["Test Automation Developer","Bazaarvoice"],
-["Software Engineering - Intern","Careerify Corporation"],
-["Software Engineering","Connected Lab Inc"],
-["Biotech Software Developer","Cyclica Inc"],
-["Software Engineering","Databricks"],
-["Software Intern","Datera Inc"],
-["Backend or Frontend Web Developer","ElationEMR"],
-["Software Engineering","Esper Technologies Inc."],
-["Production Engineering Co-op","Facebook"],
-["Data Scientist","Facebook"],
-["Software Engineering","FiveStars Loyalty Inc"],
-["Software Engineering Intern","Google"],
-["Software Engineering Student","Instart Logic Inc"],
-["Software Engineering","Kanjoya Inc"],
-["Software Engineering","LinkedIn Corporation"],
-["Software Developer","Netskope"],
-["Research Intern","New York University"],
-["Pebble Software QA Tester","Pebble Technology"],
-["Software Engineering","Quizlet LLC"],
-["Frontend Engineering","Reflektion"],
-["Backend Engineering","Reflektion"],
-["Front End Software Engineering","Rubrik"],
-["Back End Software Engineering","Rubrik"],
-["Reporting and Analytics Engineering","Scopely"],
-["Software Developer","Shoebox"],
-["Imaging Research","Sunnybrook Health Sciences Centre"],
-["Backend Engineering","Symphony Commerce"],
-["Software Engineering","The Orange Chef Co"],
-["Research and Technical Analyst","University of Toronto, Department of Medical Imaging"],
-["Software Engineering","UpNest"],
-["Software Engineering Intern","Wealthfront Inc"],
-["Data Engineering","WhiteHat Security"],
-["Software Engineering","Yahoo Inc."],
-["Software Engineering","Zanbato Group LLC"],
-["Software Engineering","ZenPayroll Inc"],
-["Data Scientist and Developer","dataESP"],
-["Analytics and Big Data Developer","nModal Solutions Inc."]]
+listofJobs = []
+
+with open('shortlistdata') as f:
+    content = f.readlines()
+    count = 5
+    temp = []
+
+    for line in content:
+    	line = line.strip()
+    	line = line.replace('/', " or ")
+    	
+	    # Check if we are at a new row, get the next 4 data
+        if ("00" in line and len(line) == 8):
+		    count = 0
+		
+		# Grab data for the next field cells
+        if (count < 3):
+			count = count + 1
+			if ("00" not in line):
+				temp.append(line)
+        elif temp:
+			listofJobs.append(temp)
+			temp = []
 
 # Compiles the Resume first
 os.system('pdflatex ' + cv)
@@ -76,4 +52,5 @@ for j in listofJobs:
 	os.system("pdfjam " + file1pdf + " " + "cv_4.pdf" + ' --outfile ' +  file_src + ".pdf")
 	os.system("rm " + file_src + "1.*")
 	os.system("rm " + file_src + "2.*")
+
 
